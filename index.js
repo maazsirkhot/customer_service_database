@@ -1,10 +1,14 @@
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const express = require('express');
 
 const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const createError = require('http-errors');
+const cors = require('cors');
+const logger = require('morgan');
 const pool = require('./src/utils/dbConnection');
+const constants = require('./src/utils/constants');
 
 app.use(
   session({
@@ -37,9 +41,30 @@ pool.getConnection((error) => {
 });
 
 // const basePath = '/';
+app.use(logger('dev'));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({ origin: '*', credentials: false }));
 
-app.listen(port);
-console.log(`Server Listening on port ${port}`);
+const customer = require('./src/routes/customer');
+
+app.use('/customer', customer);
+
+app.get('/ping', (req, res) => res
+  .status(constants.STATUS_CODE.SUCCESS_STATUS)
+  .send());
+
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+// error handler
+app.use((err, req, res) => {
+  res.status(err.status || 500);
+  res.render('Error Occurred! Please try again');
+});
+
+app.listen(port, () => {
+  console.log(`Server Listening on port ${port}`);
+});

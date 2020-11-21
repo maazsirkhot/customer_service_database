@@ -1,9 +1,9 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const pool = mysql.createPool({
   connectionLimit: 100,
   port: '3306',
-  host: 'customerservice.ciea7s8xmtar.us-west-1.rds.amazonaws.com',
+  host: 'servicerequests.ciea7s8xmtar.us-west-1.rds.amazonaws.com',
   user: 'admin',
   password: 'password',
   database: 'customer_service',
