@@ -48,8 +48,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: '*', credentials: false }));
 
 const customer = require('./src/routes/customer');
+const employee = require('./src/routes/employee');
 
 app.use('/customer', customer);
+app.use('/employee', employee);
 
 app.get('/ping', (req, res) => res
   .status(constants.STATUS_CODE.SUCCESS_STATUS)
