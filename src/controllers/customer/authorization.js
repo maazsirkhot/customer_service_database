@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+const jwt = require('jsonwebtoken');
 const constants = require('../../utils/constants');
 const queries = require('../../utils/queries');
 const pool = require('../../utils/dbConnection');
@@ -25,7 +26,8 @@ exports.login = async (req, res) => {
       const check = await encrypt.compareHash(req.body.password, result[0][0].password);
       console.log(check);
       if (check) {
-        res.status(constants.STATUS_CODE.SUCCESS_STATUS).send(result[0][0]);
+        const token = jwt.sign({ email: result[0][0].email, type: 'customer' }, 'customerservice', { expiresIn: 7200 });
+        res.status(constants.STATUS_CODE.SUCCESS_STATUS).send({ data: result[0][0], token });
       } else {
         res.status(constants.STATUS_CODE.UNAUTHORIZED_ERROR_STATUS).send(constants.MESSAGES.AUTHORIZATION_FAILED);
       }
