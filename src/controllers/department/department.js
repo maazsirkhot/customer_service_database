@@ -39,6 +39,7 @@ exports.updateDepartment = async (req, res) => {
       params.push(req.body.is_active);
     }
     params.push(req.body.id);
+    console.log(query);
     const result = await pool.promise().query(query, params);
     if (result[0].affectedRows < 1) {
       res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send(constants.MESSAGES.NO_RECORD_FOUND);

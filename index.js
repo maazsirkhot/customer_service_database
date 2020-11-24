@@ -3,7 +3,6 @@ const express = require('express');
 
 const app = express();
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const createError = require('http-errors');
 const cors = require('cors');
 const logger = require('morgan');
@@ -11,16 +10,6 @@ const passport = require('passport');
 const pool = require('./src/utils/dbConnection');
 const constants = require('./src/utils/constants');
 require('./src/utils/jwt-passport')(passport);
-
-app.use(
-  session({
-    secret: 'customer_service',
-    resave: false,
-    saveUninitialized: false,
-    duration: 60 * 60 * 1000,
-    activeDuration: 5 * 60 * 1000,
-  }),
-);
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
