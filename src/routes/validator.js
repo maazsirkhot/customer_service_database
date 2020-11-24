@@ -42,4 +42,39 @@ module.exports = {
     });
     validateRequest(req, next, schema);
   },
+  createDepartment: (req, res, next) => {
+    const schema = Joi.object({
+      name: Joi.string().required(),
+      description: Joi.string().default(null),
+    });
+    validateRequest(req, next, schema);
+  },
+  updateDepartment: (req, res, next) => {
+    const schema = Joi.object({
+      id: Joi.number().required(),
+      name: Joi.string(),
+      description: Joi.string(),
+      is_active: Joi.string().valid('T', 'F'),
+    });
+    validateRequest(req, next, schema);
+  },
+  createProject: (req, res, next) => {
+    const schema = Joi.object({
+      name: Joi.string().required(),
+      description: Joi.string().default(null),
+      start_date: Joi.date().required(),
+      end_date: Joi.date().required(),
+      dept_id: Joi.number().required(),
+    });
+    validateRequest(req, next, schema);
+  },
+  updateProject: (req, res, next) => {
+    const schema = Joi.object({
+      id: Joi.number().required(),
+      name: Joi.string(),
+      description: Joi.string(),
+      is_ongoing: Joi.string().valid('T', 'F'),
+    });
+    validateRequest(req, next, schema);
+  },
 };

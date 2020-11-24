@@ -18,5 +18,7 @@ module.exports = {
     USER_ALREADY_EXISTS: 'User with this email id already exists',
     USER_DETAILS_ALREADY_EXISTS: 'Username, email id or phone number already exists',
     AUTHORIZATION_FAILED: 'Authorization failed',
+    NO_PARAMETERS_PROVIDED: 'Please provide parameters to update the record.',
+    NO_RECORD_FOUND: 'No Record found for given details. Please try again',
   },
 };
