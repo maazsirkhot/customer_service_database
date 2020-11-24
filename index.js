@@ -7,8 +7,10 @@ const session = require('express-session');
 const createError = require('http-errors');
 const cors = require('cors');
 const logger = require('morgan');
+const passport = require('passport');
 const pool = require('./src/utils/dbConnection');
 const constants = require('./src/utils/constants');
+require('./src/utils/jwt-passport')(passport);
 
 app.use(
   session({
@@ -48,8 +50,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: '*', credentials: false }));
 
 const customer = require('./src/routes/customer');
+const employee = require('./src/routes/employee');
+const project = require('./src/routes/project');
 
 app.use('/customer', customer);
+app.use('/employee', employee);
+app.use('/project', project);
 
 app.get('/ping', (req, res) => res
   .status(constants.STATUS_CODE.SUCCESS_STATUS)
