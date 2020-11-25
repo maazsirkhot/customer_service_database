@@ -29,9 +29,9 @@ module.exports = {
 
   },
   VIEWS: {
-    VIEW_PROJECTS_IN_DEPARTMENT: '',
+    VIEW_PROJECTS_IN_DEPARTMENT: 'select * from v_projects_in_department WHERE dept_name = ? OR dept_id = ?;',
     VIEW_PROJECTS_FOR_EMPLOYEE: '',
-    VIEW_ISSUE_WITH_COMMENTS: '',
+    VIEW_ISSUE_WITH_COMMENTS: 'SELECT * FROM v_issue_with_comments WHERE issue_id = ?;',
     VIEW_EMPLOYEES_IN_PROJECT: '',
     VIEW_RESOLVED_ISSSUES: '',
     VIEW_ONGOING_ISSUES: '',
