@@ -2,10 +2,10 @@ module.exports = {
   SELECT: {
     FINDCUSTOMERBYEMAIL: 'SELECT id, name, email, password, contact FROM customer WHERE email = ?;',
     FINDEMPLOYEEBYEMAIL: 'SELECT id, name, email, password, contact, joined_on, is_active FROM employee WHERE email = ?;',
-    FINDALLDEPARTMENTS: '',
-    FINDALLPROJECTS: '',
-    FIND_COUNT_OF_UNRESOLVED_ISSUES: '',
-    FIND_LONGEST_PENDING_ISSUE: '',
+    FINDALLDEPARTMENTS: 'SELECT * FROM department;',
+    FINDALLPROJECTS: 'SELECT * FROM projects;',
+    FIND_COUNT_OF_UNRESOLVED_ISSUES: 'SELECT COUNT(1) FROM issues WHERE resolved_date IS NULL;',
+    FIND_LONGEST_PENDING_ISSUE: 'SELECT id FROM issues WHERE resolved_date IS NULL AND created_on = (SELECT MIN(created_on) FROM issues WHERE resolved_date IS NULL);',
   },
   INSERT: {
     CUSTOMER: 'INSERT INTO customer (name, email, password, contact) VALUES (?, ?, ?, ?);',
