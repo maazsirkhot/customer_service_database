@@ -28,8 +28,7 @@ module.exports = {
   STORED_PROCEDURES: {
 
   },
-  VIEWS: {
-    VIEW_PROJECTS_IN_DEPARTMENT: 'select * from v_projects_in_department WHERE dept_name = ? OR dept_id = ?;',
+  VIEWS: {    
     VIEW_PROJECTS_FOR_EMPLOYEE: '',
     VIEW_ISSUE_WITH_COMMENTS: 'SELECT * FROM v_issue_with_comments WHERE issue_id = ?;',
     VIEW_EMPLOYEES_IN_PROJECT: '',    
@@ -42,9 +41,10 @@ module.exports = {
     VIEW_ONGOING_ISSUES: 'SELECT issue_id, issue_description as description,  issue_status as status, issue_resolved_date as resolved_date, issue_created_on as created_on, issue_last_modified_on as last_modified_on, project_name FROM v_customer_issues_details WHERE customer_id = ? AND issue_resolved_date IS NULL;',    
   },
   EMPLOYEE_VIEWS: {
+    VIEW_PROJECTS_IN_DEPARTMENT: 'select * from v_projects_in_department WHERE dept_name = ? OR dept_id = ?;',
     VIEW_ISSUES_CREATED_BY_CUSTOMER: 'SELECT * FROM v_customer_issues_details WHERE customer_id = ?;',
-    VIEW_RESOLVED_ISSUES: '',    
-    VIEW_ONGOING_ISSUES: '',
+    VIEW_RESOLVED_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE issue_resolved_date IS NOT NULL AND issue_resolved_date <= DATE(NOW()) AND (project_id = ? OR project_name = ?);',    
+    VIEW_ONGOING_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE issue_resolved_date IS NULL AND (project_id = ? OR project_name = ?);',
   },
   CHECKS: {
     IS_EMPLOYEE_MANAGER: 'SELECT * FROM department WHERE manager_id = ?;',
