@@ -13,7 +13,7 @@ module.exports = {
     DEPARTMENT: 'INSERT INTO department (name, description, manager_id) VALUES (?, ?, ?);',
     PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',
 
-    ADD_MEMBER_TO_PROJECT: '',
+    ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',
     ASSIGN_ISSUES_TO_PROJECT: '',
     ADD_COMMENT_TO_ISSUE: '',
     ASSIGN_EMPLOYEE_TO_ISSUE: '',
@@ -21,6 +21,7 @@ module.exports = {
   UPDATE: {
     DEPARTMENT: 'UPDATE department SET name = ?, description = ?, is_active = ? where id = ?;',
     PROJECT: 'UPDATE projects SET name = ?, description = ?, is_ongoing = ? where id = ?;',
+    PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',
     ISSUES: '',
     UPDATE_STATUS_OF_ISSUE: '',
   },
