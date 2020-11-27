@@ -92,4 +92,34 @@ module.exports = {
     });
     validateRequest(req, next, schema);
   },
+  createIssue: (req, res, next) => {
+    const schema = Joi.object({
+      description: Joi.string().required(),
+      project_id: Joi.number().required(),
+    });
+    validateRequest(req, next, schema);
+  },
+  updateIssue: (req, res, next) => {
+    const schema = Joi.object({
+      action: Joi.string().valid('CLOSE_STATUS', 'UPDATE_STATUS', 'UPDATE_PROJECT').required(),
+      project_id: Joi.number(),
+      status: Joi.string(),
+      issue_id: Joi.number().required(),
+    });
+    validateRequest(req, next, schema);
+  },
+  assignEmployee: (req, res, next) => {
+    const schema = Joi.object({
+      assignee_id: Joi.number().required(),
+      issue_id: Joi.number().required(),
+    });
+    validateRequest(req, next, schema);
+  },
+  addComments: (req, res, next) => {
+    const schema = Joi.object({
+      comment: Joi.string().required(),
+      issue_id: Joi.number().required(),
+    });
+    validateRequest(req, next, schema);
+  },
 };

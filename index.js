@@ -41,10 +41,12 @@ app.use(cors({ origin: '*', credentials: false }));
 const customer = require('./src/routes/customer');
 const employee = require('./src/routes/employee');
 const project = require('./src/routes/project');
+const issue = require('./src/routes/issue');
 
 app.use('/customer', customer);
 app.use('/employee', employee);
 app.use('/project', project);
+app.use('/issue', issue);
 
 app.get('/ping', (req, res) => res
   .status(constants.STATUS_CODE.SUCCESS_STATUS)
