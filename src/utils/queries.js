@@ -12,8 +12,7 @@ module.exports = {
     CUSTOMER: 'INSERT INTO customer (name, email, password, contact) VALUES (?, ?, ?, ?);',
     EMPLOYEE: 'INSERT INTO employee (name, email, password, contact, joined_on) VALUES (?, ?, ?, ?, ?);',
     DEPARTMENT: 'INSERT INTO department (name, description, manager_id) VALUES (?, ?, ?);',
-    PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',
-    ISSUES: 'INSERT INTO issues (description, project_id) VALUES (?, ?);',
+    PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',    
     ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',
     ADD_COMMENT_TO_ISSUE: 'INSERT INTO comments (user_id, issue_id, comment, user_type) VALUES (?, ?, ?, ?);',
     ASSIGN_EMPLOYEE_TO_ISSUE: 'INSERT INTO issues_assignment (employee_id, issue_id, assignee_id) VALUES (?, ?, ?);',
@@ -21,20 +20,18 @@ module.exports = {
   UPDATE: {
     DEPARTMENT: 'UPDATE department SET name = ?, description = ?, is_active = ? where id = ?;',
     PROJECT: 'UPDATE projects SET name = ?, description = ?, is_ongoing = ? where id = ?;',
-    PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',
-    ISSUES: '',
-    CLOSE_ISSUE: 'UPDATE issues SET status = ?, resolved_date = NOW() WHERE issue_id = ?;',
-    UPDATE_STATUS_OF_ISSUE: 'UPDATE issues SET status = ? WHERE issue_id = ?;',
-    UPDATE_PROJECT_ON_ISSUE: 'UPDATE issues SET project_id = ? WHERE issue_id = ?',
+    PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',    
+    CLOSE_ISSUE: 'UPDATE issues SET status = ?, resolved_date = DATE(NOW()) WHERE issue_id = ? AND resolved_date IS NULL;',
+    UPDATE_STATUS_OF_ISSUE: 'UPDATE issues SET status = ? WHERE issue_id = ? AND resolved_date IS NULL;',
+    UPDATE_PROJECT_ON_ISSUE: 'UPDATE issues SET project_id = ? WHERE issue_id = ? AND resolved_date IS NULL;',
   },
   STORED_PROCEDURES: {
-
+    CREATE_NEW_ISSUE: 'CALL CREATE_NEW_ISSUE(?, ?, ?);',
   },
   VIEWS: {
     VIEW_ISSUE_WITH_COMMENTS: 'SELECT * FROM v_issue_with_comments WHERE issue_id = ?;',
     VIEW_EMPLOYEES_IN_PROJECT: '',
-    VIEW_UNASSIGNED_ISSUES: '',
-    VIEW_ISSUES_FOR_PROJECT: '',
+    VIEW_ISSUES_FOR_PROJECT: 'SELECT * FROM v_employee_issues_details WHERE project_id = ?;',
   },
   CUSTOMER_VIEWS: {
     VIEW_ISSUES_CREATED_BY_CUSTOMER: 'SELECT issue_id, issue_description as description,  issue_status as status, issue_resolved_date as resolved_date, issue_created_on as created_on, issue_last_modified_on as last_modified_on, project_name FROM v_customer_issues_details WHERE customer_id = ?;',
@@ -44,9 +41,11 @@ module.exports = {
   EMPLOYEE_VIEWS: {
     VIEW_PROJECTS_IN_DEPARTMENT: 'select * from v_projects_in_department WHERE dept_name = ? OR dept_id = ?;',
     VIEW_ISSUES_CREATED_BY_CUSTOMER: 'SELECT * FROM v_customer_issues_details WHERE customer_id = ?;',
-    VIEW_RESOLVED_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE issue_resolved_date IS NOT NULL AND issue_resolved_date <= DATE(NOW()) AND (project_id = ? OR project_name = ?);',
-    VIEW_ONGOING_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE issue_resolved_date IS NULL AND (project_id = ? OR project_name = ?);',
-    VIEW_PROJECTS_FOR_EMPLOYEE: '',
+    VIEW_RESOLVED_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE issue_resolved_date IS NOT NULL AND issue_resolved_date <= DATE(NOW()) AND project_id = ?;',
+    VIEW_ONGOING_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE issue_resolved_date IS NULL AND project_id = ?;',
+    VIEW_ONGOING_ISSUES_BY_PROJECT: 'SELECT * FROM v_customer_issues_details WHERE project_id = ?;',
+    VIEW_PROJECTS_OF_EMPLOYEE: 'SELECT DISTINCT project_id, project_name, dept_id FROM v_employee_issues_details WHERE assignee_id = ?;',
+    VIEW_UNASSIGNED_ISSUES: 'SELECT issue_id, description, status, resolved_date, created_on, last_modified_on, project_id, project_name, dept_id FROM v_employee_issues_details WHERE assignee_id IS NULL;',
   },
   CHECKS: {
     IS_EMPLOYEE_MANAGER: 'SELECT * FROM department WHERE manager_id = ?;',
