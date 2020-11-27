@@ -7,7 +7,7 @@ exports.createDepartment = async (req, res) => {
   try {
     // req.user contains passport user
     const result = await pool.promise().query(queries.INSERT.DEPARTMENT, [req.body.name, req.body.description, req.user.id]);
-    console.log(result);
+    // console.log(result);
     res.status(constants.STATUS_CODE.SUCCESS_STATUS).send({ departmentId: result[0].insertId });
   } catch (error) {
     res.status(constants.STATUS_CODE.INTERNAL_SERVER_ERROR_STATUS).send(error);
@@ -18,6 +18,11 @@ exports.updateDepartment = async (req, res) => {
   try {
     let query = queries.UPDATE.DEPARTMENT;
     const params = [];
+    if (req.user.type === 'customer') {
+      res.status(constants.STATUS_CODE.FORBIDDEN_ERROR_STATUS).send(constants.MESSAGES.NO_RECORD_FOUND);
+      res.end();
+      return;
+    }
     if (!req.body.name && !req.body.description && !req.body.is_active) {
       res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send(constants.MESSAGES.NO_PARAMETERS_PROVIDED);
       res.end();
@@ -39,7 +44,6 @@ exports.updateDepartment = async (req, res) => {
       params.push(req.body.is_active);
     }
     params.push(req.body.id);
-    console.log(query);
     const result = await pool.promise().query(query, params);
     if (result[0].affectedRows < 1) {
       res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send(constants.MESSAGES.NO_RECORD_FOUND);

@@ -77,4 +77,19 @@ module.exports = {
     });
     validateRequest(req, next, schema);
   },
+  addMember: (req, res, next) => {
+    const schema = Joi.object({
+      project_id: Joi.number().required(),
+      start_date: Joi.date().required(),
+      end_date: Joi.date().required(),
+    });
+    validateRequest(req, next, schema);
+  },
+  updateMemberStatus: (req, res, next) => {
+    const schema = Joi.object({
+      project_id: Joi.number().required(),
+      is_active: Joi.string().valid('T', 'F').required(),
+    });
+    validateRequest(req, next, schema);
+  },
 };

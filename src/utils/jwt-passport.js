@@ -21,6 +21,7 @@ module.exports = (passport) => {
           if (!result[0][0]) {
             return done(null, false);
           }
+          result[0][0].type = jwtPayload.type;
           return done(null, result[0][0]);
         }
       } catch (error) {
