@@ -12,8 +12,7 @@ module.exports = {
     CUSTOMER: 'INSERT INTO customer (name, email, password, contact) VALUES (?, ?, ?, ?);',
     EMPLOYEE: 'INSERT INTO employee (name, email, password, contact, joined_on) VALUES (?, ?, ?, ?, ?);',
     DEPARTMENT: 'INSERT INTO department (name, description, manager_id) VALUES (?, ?, ?);',
-    PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',
-    ISSUES: 'INSERT INTO issues (description, project_id) VALUES (?, ?);',
+    PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',    
     ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',
     ADD_COMMENT_TO_ISSUE: 'INSERT INTO comments (user_id, issue_id, comment, user_type) VALUES (?, ?, ?, ?);',
     ASSIGN_EMPLOYEE_TO_ISSUE: 'INSERT INTO issues_assignment (employee_id, issue_id, assignee_id) VALUES (?, ?, ?);',
@@ -21,14 +20,13 @@ module.exports = {
   UPDATE: {
     DEPARTMENT: 'UPDATE department SET name = ?, description = ?, is_active = ? where id = ?;',
     PROJECT: 'UPDATE projects SET name = ?, description = ?, is_ongoing = ? where id = ?;',
-    PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',
-    ISSUES: '',
+    PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',    
     CLOSE_ISSUE: 'UPDATE issues SET status = ?, resolved_date = NOW() WHERE issue_id = ?;',
     UPDATE_STATUS_OF_ISSUE: 'UPDATE issues SET status = ? WHERE issue_id = ?;',
     UPDATE_PROJECT_ON_ISSUE: 'UPDATE issues SET project_id = ? WHERE issue_id = ?',
   },
   STORED_PROCEDURES: {
-
+    CREATE_NEW_ISSUE: 'CALL CREATE_NEW_ISSUE(?, ?, ?);',
   },
   VIEWS: {
     VIEW_ISSUE_WITH_COMMENTS: 'SELECT * FROM v_issue_with_comments WHERE issue_id = ?;',
