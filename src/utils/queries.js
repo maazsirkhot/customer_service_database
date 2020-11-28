@@ -23,9 +23,9 @@ module.exports = {
     DEPARTMENT: 'UPDATE department SET name = ?, description = ?, is_active = ? where id = ?;',
     PROJECT: 'UPDATE projects SET name = ?, description = ?, is_ongoing = ? where id = ?;',
     PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',
-    CLOSE_ISSUE: 'UPDATE issues SET status = ?, resolved_date = DATE(NOW()) WHERE issue_id = ? AND resolved_date IS NULL;',
-    UPDATE_STATUS_OF_ISSUE: 'UPDATE issues SET status = ? WHERE issue_id = ? AND resolved_date IS NULL;',
-    UPDATE_PROJECT_ON_ISSUE: 'UPDATE issues SET project_id = ? WHERE issue_id = ? AND resolved_date IS NULL;',
+    CLOSE_ISSUE: 'UPDATE issues SET status = ?, resolved_date = DATE(NOW()) WHERE id = ? AND resolved_date IS NULL;',
+    UPDATE_STATUS_OF_ISSUE: 'UPDATE issues SET status = ? WHERE id = ? AND resolved_date IS NULL;',
+    UPDATE_PROJECT_ON_ISSUE: 'UPDATE issues SET project_id = ? WHERE id = ? AND resolved_date IS NULL;',
   },
   STORED_PROCEDURES: {
     CREATE_NEW_ISSUE: 'CALL CREATE_NEW_ISSUE(?, ?, ?);',
