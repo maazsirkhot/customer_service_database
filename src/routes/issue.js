@@ -5,7 +5,7 @@ const validator = require('./validator');
 
 const router = express.Router();
 
-router.post('/assign', validator.createIssue, passport.authenticate('jwt', { session: false }), issueController.createIssue);
+router.post('/new', validator.createIssue, passport.authenticate('jwt', { session: false }), issueController.createIssue);
 router.put('/update', validator.updateIssue, passport.authenticate('jwt', { session: false }), issueController.updateIssue);
 
 router.post('/assignemployee', validator.assignEmployee, passport.authenticate('jwt', { session: false }), issueController.assignEmployee);

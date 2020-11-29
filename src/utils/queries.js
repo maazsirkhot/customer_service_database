@@ -15,7 +15,7 @@ module.exports = {
     DEPARTMENT: 'INSERT INTO department (name, description, manager_id) VALUES (?, ?, ?);',
     PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',
     ISSUES: 'INSERT INTO issues (description, more_information, project_id) VALUES (?, ?, ?);',
-    ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',    
+    ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',
     ASSIGN_EMPLOYEE_TO_ISSUE: 'INSERT INTO issues_assignment (employee_id, issue_id, assignee_id) VALUES (?, ?, ?);',
   },
   UPDATE: {

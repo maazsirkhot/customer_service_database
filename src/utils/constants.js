@@ -20,5 +20,6 @@ module.exports = {
     AUTHORIZATION_FAILED: 'Authorization failed',
     NO_PARAMETERS_PROVIDED: 'Please provide parameters to update the record.',
     NO_RECORD_FOUND: 'No Record found for given details. Please try again',
+    OPERATION_UNSUCCESSFUL: 'The intended operation is unsuccessful. Please try again',
   },
 };
