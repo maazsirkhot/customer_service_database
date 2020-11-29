@@ -15,8 +15,7 @@ module.exports = {
     DEPARTMENT: 'INSERT INTO department (name, description, manager_id) VALUES (?, ?, ?);',
     PROJECT: 'INSERT INTO projects (name, description, start_date, end_date, dept_id) VALUES (?, ?, ?, ?, ?);',
     ISSUES: 'INSERT INTO issues (description, more_information, project_id) VALUES (?, ?, ?);',
-    ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',
-    ADD_COMMENT_TO_ISSUE: 'INSERT INTO comments (user_id, issue_id, comment, user_type) VALUES (?, ?, ?, ?);',
+    ADD_MEMBER_TO_PROJECT: 'INSERT INTO employee_projects_mapping (employee_id, project_id, start_date, end_date) VALUES (?, ?, ?, ?);',    
     ASSIGN_EMPLOYEE_TO_ISSUE: 'INSERT INTO issues_assignment (employee_id, issue_id, assignee_id) VALUES (?, ?, ?);',
   },
   UPDATE: {
@@ -29,6 +28,7 @@ module.exports = {
   },
   STORED_PROCEDURES: {
     CREATE_NEW_ISSUE: 'CALL CREATE_NEW_ISSUE(?, ?, ?);',
+    ADD_COMMENT_TO_ISSUE: 'CALL ADD_COMMENT(?, ?, ?, ?, @is_inserted); SELECT @is_inserted;',
   },
   VIEWS: {
     VIEW_ISSUE_WITH_COMMENTS: 'SELECT * FROM v_issue_with_comments WHERE issue_id = ?;',
