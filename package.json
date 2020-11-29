@@ -15,15 +15,18 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "fs": "^0.0.1-security",
     "http-errors": "^1.7.2",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
+    "morgan-body": "^2.5.2",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^7.13.0",
