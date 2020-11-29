@@ -92,3 +92,21 @@ exports.addComments = async (req, res) => {
     res.status(constants.STATUS_CODE.INTERNAL_SERVER_ERROR_STATUS).send(error);
   }
 };
+
+exports.fetchIssue = async (req, res) => {
+  try {
+    const result = await pool.promise().query(queries.VIEWS.VIEW_ISSUE_WITH_COMMENTS, [req.params.issue_id]);
+    res.status(constants.STATUS_CODE.SUCCESS_STATUS).send(result[0]);
+  } catch (error) {
+    res.status(constants.STATUS_CODE.INTERNAL_SERVER_ERROR_STATUS).send(error);
+  }
+};
+
+exports.fetchIssuesForProject = async (req, res) => {
+  try {
+    const result = await pool.promise().query(queries.VIEWS.VIEW_ISSUES_FOR_PROJECT, [req.params.project_id]);
+    res.status(constants.STATUS_CODE.SUCCESS_STATUS).send(result[0]);
+  } catch (error) {
+    res.status(constants.STATUS_CODE.INTERNAL_SERVER_ERROR_STATUS).send(error);
+  }
+};
