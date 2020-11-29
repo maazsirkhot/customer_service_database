@@ -24,7 +24,7 @@ exports.updateIssue = async (req, res) => {
 
     if (action === 'CLOSE_STATUS') {
       if (req.user.type === 'customer' || !req.body.status) {
-        res.status(constants.STATUS_CODE.FORBIDDEN_ERROR_STATUS).send(constants.MESSAGES.AUTHORIZATION_FAILED);
+        res.status(constants.STATUS_CODE.FORBIDDEN_ERROR_STATUS).send(constants.MESSAGES.OPERATION_UNSUCCESSFUL);
         res.end();
         return;
       }
@@ -37,7 +37,12 @@ exports.updateIssue = async (req, res) => {
       res.status(constants.STATUS_CODE.SUCCESS_STATUS).send(result[0]);
       return;
     }
-    if (action === 'UPDATE_STATUS' || !req.body.status) {
+    if (action === 'UPDATE_STATUS') {
+      if (req.user.type === 'customer' || !req.body.status) {
+        res.status(constants.STATUS_CODE.FORBIDDEN_ERROR_STATUS).send(constants.MESSAGES.OPERATION_UNSUCCESSFUL);
+        res.end();
+        return;
+      }
       const result = await pool.promise().query(queries.UPDATE.UPDATE_STATUS_OF_ISSUE, [req.body.status, req.body.issue_id]);
       if (result[0].affectedRows < 1) {
         res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send(constants.MESSAGES.NO_RECORD_FOUND);
@@ -49,7 +54,7 @@ exports.updateIssue = async (req, res) => {
     }
     if (action === 'UPDATE_PROJECT') {
       if (req.user.type === 'customer' || !req.body.project_id) {
-        res.status(constants.STATUS_CODE.FORBIDDEN_ERROR_STATUS).send(constants.MESSAGES.AUTHORIZATION_FAILED);
+        res.status(constants.STATUS_CODE.FORBIDDEN_ERROR_STATUS).send(constants.MESSAGES.OPERATION_UNSUCCESSFUL);
         res.end();
         return;
       }
@@ -85,9 +90,13 @@ exports.assignEmployee = async (req, res) => {
 
 exports.addComments = async (req, res) => {
   try {
-    const result = await pool.promise().query(queries.INSERT.ADD_COMMENT_TO_ISSUE, [req.user.id, req.body.issue_id, req.body.comment, req.user.type]);
-    console.log(result);
-    res.status(constants.STATUS_CODE.SUCCESS_STATUS).send(result[0]);
+    const result = await pool.promise().query(queries.STORED_PROCEDURES.ADD_COMMENT_TO_ISSUE, [req.user.id, req.body.issue_id, req.body.comment, req.user.type]);
+    const procedureStatus = result[0][1][0]['@is_inserted'];
+    if (procedureStatus === 'F') {
+      res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send(constants.MESSAGES.OPERATION_UNSUCCESSFUL);
+      return;
+    }
+    res.status(constants.STATUS_CODE.SUCCESS_STATUS).send({ data: result[0][0] });
   } catch (error) {
     res.status(constants.STATUS_CODE.INTERNAL_SERVER_ERROR_STATUS).send(error);
   }
