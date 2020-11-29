@@ -21,7 +21,7 @@ module.exports = {
   UPDATE: {
     DEPARTMENT: 'UPDATE department SET name = ?, description = ?, is_active = ? where id = ?;',
     PROJECT: 'UPDATE projects SET name = ?, description = ?, is_ongoing = ? where id = ?;',
-    //PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',
+    // PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET is_active = ? where employee_id = ? and project_id = ?;',
     PROJECT_MEMBER: 'UPDATE employee_projects_mapping SET start_date = ?, end_date = ? where employee_id = ? and project_id = ?;',
     CLOSE_ISSUE: 'UPDATE issues SET status = ?, resolved_date = DATE(NOW()) WHERE id = ? AND resolved_date IS NULL;',
     UPDATE_STATUS_OF_ISSUE: 'UPDATE issues SET status = ? WHERE id = ? AND resolved_date IS NULL;',
@@ -33,7 +33,7 @@ module.exports = {
   },
   VIEWS: {
     VIEW_ISSUE_WITH_COMMENTS: 'SELECT * FROM v_issue_with_comments WHERE issue_id = ?;',
-    //Added
+    // Added
     VIEW_EMPLOYEES_IN_PROJECT: 'SELECT * FROM v_employee_projects_mapping where project_id = ? and is_active = ?;',
     VIEW_ISSUES_FOR_PROJECT: 'SELECT * FROM v_employee_issues_details WHERE project_id = ?;',
   },

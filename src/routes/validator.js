@@ -183,4 +183,16 @@ module.exports = {
     });
     validateQueryParam(req, next, schema);
   },
+  stats: (req, res, next) => {
+    const schema = Joi.object({
+      action: Joi.string().valid('UNRESOLVED_ISSUES', 'LONGEST_PENDING_ISSUES').required(),
+    });
+    validateRequestBody(req, next, schema);
+  },
+  employeeOnIssue: (req, res, next) => {
+    const schema = Joi.object({
+      issue_id: Joi.number().required(),
+    });
+    validateQueryParam(req, next, schema);
+  },
 };

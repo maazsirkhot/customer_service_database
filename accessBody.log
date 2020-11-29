@@ -1,0 +1,244 @@
+Request: GET /employee/login/ at Sun Nov 29 2020 02:51:30 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"email": "maazsirkhot0@gmail.com",
+	"password": "password1234"
+}
+Response Body:
+{
+	"data": {
+		"id": 1,
+		"name": "Maaz Sirkhot",
+		"email": "maazsirkhot0@gmail.com",
+		"password": "$2b$10$jJDoqstHXc.Zz7IZJdpOyu/yhJ35E8hCOQfMtXc8vda5nCLr1PZKW",
+		"contact": "6692884385",
+		"joined_on": "2014-02-27T08:00:00.000Z",
+		"is_active": "T"
+	},
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hYXpzaXJraG90MEBnbWFpbC5jb20iLCJ0eXBlIjoiZW1wbG95ZWUiLCJpYXQiOjE2MDY2NDcwOTAsImV4cCI6MTYwNjY1NDI5MH0.kChnuA48N756TbUZWGgey6E5r6oeKV1Zaxlj96xTf-Q"
+}
+Response: 200 445.937 ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:52:27 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"action": "UNRESOLVED_ISSUES"
+}
+Response Body:
+[
+	[
+		{
+			"COUNT(1)": 4
+		}
+	],
+	[
+		{
+			"_buf": {
+				"type": "Buffer",
+				"data": [
+					1,
+					0,
+					0,
+					1,
+					1,
+					30,
+					0,
+					0,
+					2,
+					3,
+					100,
+					101,
+					102,
+					0,
+					0,
+					0,
+					8,
+					67,
+					79,
+					85,
+					78,
+					84,
+					40,
+					49,
+					41,
+					0,
+					12,
+					63,
+					0,
+					21,
+					0,
+					0,
+					0,
+					8,
+					129,
+					0,
+					0,
+					0,
+					0,
+					5,
+					0,
+					0,
+					3,
+					254,
+					0,
+					0,
+					34,
+					0,
+					2,
+					0,
+					0,
+					4,
+					1,
+					52,
+					5,
+					0,
+					0,
+					5,
+					254,
+					0,
+					0,
+					34,
+					0
+				]
+			},
+			"_clientEncoding": "utf8",
+			"_catalogLength": 3,
+			"_catalogStart": 10,
+			"_schemaLength": 0,
+			"_schemaStart": 14,
+			"_tableLength": 0,
+			"_tableStart": 15,
+			"_orgTableLength": 0,
+			"_orgTableStart": 16,
+			"_orgNameLength": 0,
+			"_orgNameStart": 26,
+			"characterSet": 63,
+			"encoding": "binary",
+			"name": "COUNT(1)",
+			"columnLength": 21,
+			"colu
+...
+Response: 200 186.335 ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:52:51 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"action": "UNRESOLVED_ISSUES"
+}
+Response Body:
+{
+	"COUNT(1)": 4
+}
+Response: 200 457.394 ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:53:07 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Response: 500 4.097 ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:53:24 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"action": "UNRESOLVED_ISSUESS"
+}
+Response: - - ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:54:45 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"action": "UNRESOLVED_ISSUESS"
+}
+Response Body:
+Please provide parameters to update the record.
+Response: 400 363.863 ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:54:52 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request: GET /issue/stats at Sun Nov 29 2020 02:55:04 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"action": "UNRESOLVED_ISSUES"
+}
+Response Body:
+{
+	"COUNT(1)": 4
+}
+Response: 200 448.997 ms 
+Request: GET /issue/stats at Sun Nov 29 2020 02:56:04 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"action": "LONGEST_PENDING_ISSUES"
+}
+Response Body:
+{
+	"id": 1,
+	"description": "First issue"
+}
+Response: 200 450.266 ms 
+Request: GET /issue/employeeissue?issue_id=1 at Sun Nov 29 2020 03:02:02 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 1
+}
+Response Body:
+{
+	"assignee_id": 1,
+	"assigned_on": "2020-11-27T12:54:12.000Z"
+}
+Response: 200 484.257 ms 
+Request: GET /issue/employeeissue?issue_id=11 at Sun Nov 29 2020 03:02:13 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 11
+}
+Response Body:
+{
+	"assignee_id": null,
+	"assigned_on": null
+}
+Response: 200 187.346 ms 
+Request: GET /issue/employeeissue?issue_id=65 at Sun Nov 29 2020 03:02:18 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 65
+}
+Response Body:
+{
+	"assignee_id": null,
+	"assigned_on": null
+}
+Response: 200 181.040 ms 
+Request: GET /issue/employeeissue at Sun Nov 29 2020 03:02:21 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Response: 500 2.738 ms 
+Request: GET /issue/employeeissue?issue_id=1 at Sun Nov 29 2020 03:02:29 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 1
+}
+Response Body:
+{
+	"assignee_id": 1,
+	"assigned_on": "2020-11-27T12:54:12.000Z"
+}
+Response: 200 176.005 ms 
+Request: GET /issue/employeeissue?issue_id=11 at Sun Nov 29 2020 03:02:35 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 11
+}
+Response Body:
+{
+	"assignee_id": null,
+	"assigned_on": null
+}
+Response: 200 166.386 ms 
+Request: GET /issue/employeeissue?issue_id=11 at Sun Nov 29 2020 03:04:14 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 11
+}
+Response Body:
+No Record found for given details. Please try again
+Response: 400 448.561 ms 
+Request: GET /issue/employeeissue?issue_id=1 at Sun Nov 29 2020 03:04:20 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"issue_id": 1
+}
+Response Body:
+{
+	"assignee_id": 1,
+	"assigned_on": "2020-11-27T12:54:12.000Z"
+}
+Response: 200 177.927 ms 
