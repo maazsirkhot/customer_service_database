@@ -6,7 +6,10 @@ const bodyParser = require('body-parser');
 const createError = require('http-errors');
 const cors = require('cors');
 const logger = require('morgan');
+const bodyLogger = require('morgan-body');
 const passport = require('passport');
+const fs = require('fs');
+const path = require('path');
 const pool = require('./src/utils/dbConnection');
 const constants = require('./src/utils/constants');
 require('./src/utils/jwt-passport')(passport);
@@ -33,6 +36,12 @@ pool.getConnection((error) => {
 
 // const basePath = '/';
 app.use(logger('dev'));
+
+bodyLogger(app, {
+  // .. other settings
+  noColors: true,
+  stream: fs.createWriteStream(path.join(__dirname, 'accessBody.log'), { flags: 'a' }),
+});
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
