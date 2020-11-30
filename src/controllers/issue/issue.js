@@ -2,6 +2,7 @@
 const constants = require('../../utils/constants');
 const queries = require('../../utils/queries');
 const pool = require('../../utils/dbConnection');
+const Comments = require('../../utils/commentsSchema');
 
 exports.createIssue = async (req, res) => {
   try {
@@ -93,11 +94,36 @@ exports.addComments = async (req, res) => {
   try {
     const result = await pool.promise().query(queries.STORED_PROCEDURES.ADD_COMMENT_TO_ISSUE, [req.user.id, req.body.issue_id, req.body.comment, req.user.type]);
     const procedureStatus = result[0][1][0]['@is_inserted'];
+
     if (procedureStatus === 'F') {
-      res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send(constants.MESSAGES.OPERATION_UNSUCCESSFUL);
+      res.status(constants.STATUS_CODE.BAD_REQUEST_ERROR_STATUS).send({ sql: constants.MESSAGES.OPERATION_UNSUCCESSFUL });
       return;
     }
-    res.status(constants.STATUS_CODE.SUCCESS_STATUS).send({ data: result[0][0] });
+    const checkComment = await Comments.find({ issue_id: req.body.issue_id });
+    let mongoResult;
+    if (checkComment.length === 0) {
+      const addComment = new Comments({
+        issue_id: req.body.issue_id,
+        comments: [{
+          userType: req.user.type,
+          userId: req.user.id,
+          text: req.body.comment,
+        }],
+      });
+      const newComment = await addComment.save();
+      mongoResult = newComment.toJSON();
+    } else {
+      mongoResult = await Comments.updateOne({ issue_id: req.body.issue_id }, {
+        $push: {
+          comments: {
+            userType: req.user.type,
+            userId: req.user.id,
+            text: req.body.comment,
+          },
+        },
+      });
+    }
+    res.status(constants.STATUS_CODE.SUCCESS_STATUS).send({ data: result[0][0], mongoResult });
   } catch (error) {
     res.status(constants.STATUS_CODE.INTERNAL_SERVER_ERROR_STATUS).send(error);
   }

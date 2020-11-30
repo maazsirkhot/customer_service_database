@@ -242,3 +242,374 @@ Response Body:
 	"assigned_on": "2020-11-27T12:54:12.000Z"
 }
 Response: 200 177.927 ms 
+Request: GET /employee/login/ at Sun Nov 29 2020 13:51:53 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"email": "maazsirkhot0@gmail.com",
+	"password": "password1234"
+}
+Response Body:
+{
+	"data": {
+		"id": 1,
+		"name": "Maaz Sirkhot",
+		"email": "maazsirkhot0@gmail.com",
+		"password": "$2b$10$jJDoqstHXc.Zz7IZJdpOyu/yhJ35E8hCOQfMtXc8vda5nCLr1PZKW",
+		"contact": "6692884385",
+		"joined_on": "2014-02-27T08:00:00.000Z",
+		"is_active": "T"
+	},
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hYXpzaXJraG90MEBnbWFpbC5jb20iLCJ0eXBlIjoiZW1wbG95ZWUiLCJpYXQiOjE2MDY2ODY3MTMsImV4cCI6MTYwNjY5MzkxM30.fCon0ZGx8T3IZQv4f_p91_TRr2lA2snmU25jf_d-bZo"
+}
+Response: 200 535.152 ms 
+Request: GET /project/view/resolvedissues?project_id=3 at Sun Nov 29 2020 13:54:09 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"project_id": 3
+}
+Response Body:
+[
+	[
+		{
+			"customer_id": 2,
+			"customer_name": "Karnavee Kamdar",
+			"customer_email": "kamdarkarnavee@gmail.com",
+			"issue_id": 8,
+			"issue_description": "new issue",
+			"issue_status": "DONE",
+			"issue_resolved_date": "2020-11-28T08:00:00.000Z",
+			"issue_created_on": "2020-11-29T04:26:14.000Z",
+			"issue_last_modified_on": "2020-11-29T06:59:45.000Z",
+			"project_id": 3,
+			"project_name": "IT"
+		}
+	],
+	[
+		{
+			"_buf": {
+				"type": "Buffer",
+				"data": [
+					1,
+					0,
+					0,
+					1,
+					11,
+					110,
+					0,
+					0,
+					2,
+					3,
+					100,
+					101,
+					102,
+					16,
+					99,
+					117,
+					115,
+					116,
+					111,
+					109,
+					101,
+					114,
+					95,
+					115,
+					101,
+					114,
+					118,
+					105,
+					99,
+					101,
+					25,
+					118,
+					95,
+					99,
+					117,
+					115,
+					116,
+					111,
+					109,
+					101,
+					114,
+					95,
+					105,
+					115,
+					115,
+					117,
+					101,
+					115,
+					95,
+					100,
+					101,
+					116,
+					97,
+					105,
+					108,
+					11
+...
+Response: 200 181.988 ms 
+Request: GET /project/view/resolvedissues?project_id=5 at Sun Nov 29 2020 13:54:25 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"project_id": 5
+}
+Response Body:
+[
+	[],
+	[
+		{
+			"_buf": {
+				"type": "Buffer",
+				"data": [
+					1,
+					0,
+					0,
+					1,
+					11,
+					110,
+					0,
+					0,
+					2,
+					3,
+					100,
+					101,
+					102,
+					16,
+					99,
+					117,
+					115,
+					116,
+					111,
+					109,
+					101,
+					114,
+					95,
+					115,
+					101,
+					114,
+					118,
+					105,
+					99,
+					101,
+					25,
+					118,
+					95,
+					99,
+					117,
+					115,
+					116,
+					111,
+					109,
+					101,
+					114,
+					95,
+					105,
+					115,
+					115,
+					117,
+					101,
+					115,
+					95,
+					100,
+					101,
+					116,
+					97,
+					105,
+					108,
+					115,
+					25,
+					118,
+					95,
+					99,
+					117,
+					115,
+					116,
+					111,
+					109,
+					101,
+					114,
+					95,
+					105,
+					115,
+					115,
+					117,
+					101,
+					115,
+					95,
+					100,
+					101,
+					116,
+					97,
+					105,
+					108,
+					115,
+					11,
+					99,
+					117,
+					115,
+					116,
+					111,
+					109,
+					101,
+					114,
+					95,
+					105,
+					100,
+					11,
+					99,
+					117,
+					
+...
+Response: 200 172.909 ms 
+Request: GET /employee/login/ at Sun Nov 29 2020 21:09:06 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"email": "maazsirkhot0@gmail.com",
+	"password": "password1234"
+}
+Response Body:
+{
+	"data": {
+		"id": 1,
+		"name": "Maaz Sirkhot",
+		"email": "maazsirkhot0@gmail.com",
+		"password": "$2b$10$jJDoqstHXc.Zz7IZJdpOyu/yhJ35E8hCOQfMtXc8vda5nCLr1PZKW",
+		"contact": "6692884385",
+		"joined_on": "2014-02-27T08:00:00.000Z",
+		"is_active": "T"
+	},
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hYXpzaXJraG90MEBnbWFpbC5jb20iLCJ0eXBlIjoiZW1wbG95ZWUiLCJpYXQiOjE2MDY3MTI5NDYsImV4cCI6MTYwNjcyMDE0Nn0.4KQmt1vI7fMhDEf253oshcWRu-VJ9EGWcY4aqLui_ys"
+}
+Response: 200 480.047 ms 
+Request: POST /issue/comment at Sun Nov 29 2020 21:09:28 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"comment": "New comment to test the stored procedure",
+	"issue_id": 3
+}
+Response Body:
+The intended operation is unsuccessful. Please try again
+Response: 400 384.993 ms 
+Request: POST /issue/comment at Sun Nov 29 2020 21:10:21 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"comment": "New comment to test the stored procedure",
+	"issue_id": 3
+}
+Response Body:
+{
+	"sql": "The intended operation is unsuccessful. Please try again",
+	"mongoResult": {
+		"n": 1,
+		"nModified": 1,
+		"opTime": {
+			"ts": "6900779879252361217",
+			"t": 44
+		},
+		"electionId": "7fffffff000000000000002c",
+		"ok": 1,
+		"$clusterTime": {
+			"clusterTime": "6900779879252361217",
+			"signature": {
+				"hash": "2hEqhvVNViPqJPm+Put4t17X/z8=",
+				"keyId": "6852307823242510338"
+			}
+		},
+		"operationTime": "6900779879252361217"
+	}
+}
+Response: 400 676.961 ms 
+Request: POST /issue/comment at Sun Nov 29 2020 21:11:36 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"comment": "New comment to test the stored procedure",
+	"issue_id": 3
+}
+Response Body:
+{
+	"sql": "The intended operation is unsuccessful. Please try again",
+	"mongoResult": {
+		"_id": "5fc47f08bd8ad732188ed8f1",
+		"issue_id": 3,
+		"comments": [
+			{
+				"_id": "5fc47f08bd8ad732188ed8f2",
+				"userType": "employee",
+				"userId": 1,
+				"text": "New comment to test the stored procedure"
+			}
+		],
+		"__v": 0
+	}
+}
+Response: 400 662.254 ms 
+Request: POST /issue/comment at Sun Nov 29 2020 21:14:40 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"comment": "New comment to test mongodb",
+	"issue_id": 3
+}
+Response Body:
+{
+	"sql": "The intended operation is unsuccessful. Please try again",
+	"mongoResult": {
+		"n": 1,
+		"nModified": 1,
+		"opTime": {
+			"ts": "6900780991648890881",
+			"t": 44
+		},
+		"electionId": "7fffffff000000000000002c",
+		"ok": 1,
+		"$clusterTime": {
+			"clusterTime": "6900780991648890881",
+			"signature": {
+				"hash": "+47KsuNVbf8hl4Pi7ofIDr4+GsM=",
+				"keyId": "6852307823242510338"
+			}
+		},
+		"operationTime": "6900780991648890881"
+	}
+}
+Response: 400 356.635 ms 
+Request: POST /issue/comment at Sun Nov 29 2020 21:16:42 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"comment": "New comment to test mongodb",
+	"issue_id": 10
+}
+Response Body:
+{
+	"data": {
+		"fieldCount": 0,
+		"affectedRows": 1,
+		"insertId": 0,
+		"info": "",
+		"serverStatus": 10,
+		"warningStatus": 0
+	},
+	"mongoResult": {
+		"_id": "5fc4803a4b35ad327eb4b62f",
+		"issue_id": 10,
+		"comments": [
+			{
+				"_id": "5fc4803a4b35ad327eb4b630",
+				"userType": "employee",
+				"userId": 1,
+				"text": "New comment to test mongodb"
+			}
+		],
+		"__v": 0
+	}
+}
+Response: 200 702.945 ms 
+Request: POST /issue/comment at Sun Nov 29 2020 21:17:00 GMT-0800, IP: ::1, User Agent: PostmanRuntime/7.26.5
+Request Body:
+{
+	"comment": "New comment to test mongodb",
+	"issue_id": 3
+}
+Response Body:
+{
+	"sql": "The intended operation is unsuccessful. Please try again"
+}
+Response: 400 173.309 ms 

@@ -10,7 +10,9 @@ const bodyLogger = require('morgan-body');
 const passport = require('passport');
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
 const pool = require('./src/utils/dbConnection');
+const mongoDB = require('./src/utils/mongo').mongoURI;
 const constants = require('./src/utils/constants');
 require('./src/utils/jwt-passport')(passport);
 
@@ -33,6 +35,11 @@ pool.getConnection((error) => {
   if (error) throw error;
   console.log('Database Connected');
 });
+
+mongoose
+  .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 100 })
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log(err));
 
 // const basePath = '/';
 app.use(logger('dev'));
